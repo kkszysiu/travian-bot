@@ -1,0 +1,35 @@
+# Build output
+build/bin
+travian-bot
+
+# Frontend
+frontend/node_modules
+frontend/dist
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Environment
+.env
+.env.local

@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif;
+}
+
+#app {
+  height: 100vh;
+}
