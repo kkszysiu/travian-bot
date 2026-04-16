@@ -222,7 +222,7 @@
         {#each buildingList as b}
           <div class="px-2 py-1 text-xs border-b border-gray-50 flex items-center justify-between group"
             style="background-color: {b.color}20">
-            <span class="text-gray-700">
+            <span style="color: {b.color}">
               [{b.location}] {b.typeName}
             </span>
             <span class="flex items-center gap-1">
