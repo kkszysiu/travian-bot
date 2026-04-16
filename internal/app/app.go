@@ -282,9 +282,6 @@ func (a *App) AddResourceBuildJob(input database.ResourceBuildInput) error {
 }
 
 func (a *App) DeleteJob(jobID int) error {
-	if err := a.requirePausedForJob(jobID); err != nil {
-		return err
-	}
 	if err := a.db.DeleteJob(jobID); err != nil {
 		return err
 	}
@@ -293,9 +290,6 @@ func (a *App) DeleteJob(jobID int) error {
 }
 
 func (a *App) DeleteAllJobs(villageID int) error {
-	if err := a.requirePausedForVillage(villageID); err != nil {
-		return err
-	}
 	if err := a.db.DeleteAllJobs(villageID); err != nil {
 		return err
 	}
@@ -304,9 +298,6 @@ func (a *App) DeleteAllJobs(villageID int) error {
 }
 
 func (a *App) MoveJob(jobID int, direction string) error {
-	if err := a.requirePausedForJob(jobID); err != nil {
-		return err
-	}
 	if err := a.db.MoveJob(jobID, direction); err != nil {
 		return err
 	}

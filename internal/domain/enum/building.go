@@ -149,18 +149,54 @@ func (b Building) IsResourceField() bool {
 
 func (b Building) GetColor() string {
 	switch b {
+	// Empty
 	case BuildingSite:
-		return "white"
+		return "#9ca3af"
+	// Resource fields
 	case BuildingWoodcutter:
-		return "lime"
+		return "#16a34a"
 	case BuildingClayPit:
-		return "orange"
+		return "#c2410c"
 	case BuildingIronMine:
-		return "lightgray"
+		return "#6b7280"
 	case BuildingCropland:
-		return "yellow"
+		return "#ca8a04"
+	// Resource bonus
+	case BuildingSawmill, BuildingBrickyard, BuildingIronFoundry,
+		BuildingGrainMill, BuildingBakery:
+		return "#b45309"
+	// Storage
+	case BuildingWarehouse, BuildingGranary, BuildingGreatWarehouse, BuildingGreatGranary:
+		return "#0369a1"
+	// Military
+	case BuildingBarracks, BuildingGreatBarracks, BuildingStable, BuildingGreatStable,
+		BuildingWorkshop, BuildingAcademy, BuildingSmithy, BuildingHospital:
+		return "#dc2626"
+	// Defense
+	case BuildingCityWall, BuildingEarthWall, BuildingPalisade,
+		BuildingStoneWall, BuildingMakeshiftWall, BuildingTrapper, BuildingCranny:
+		return "#7c3aed"
+	// Infrastructure
+	case BuildingMainBuilding, BuildingRallyPoint, BuildingTownHall,
+		BuildingStonemasonsLodge, BuildingWaterworks:
+		return "#4b5563"
+	// Trade
+	case BuildingMarketplace, BuildingTradeOffice:
+		return "#0891b2"
+	// Government
+	case BuildingResidence, BuildingPalace, BuildingEmbassy,
+		BuildingTreasury, BuildingCommandCenter:
+		return "#9333ea"
+	// Hero
+	case BuildingHerosMansion, BuildingTournamentSquare:
+		return "#be185d"
+	// Special
+	case BuildingBrewery, BuildingHorseDrinkingTrough:
+		return "#65a30d"
+	case BuildingWW:
+		return "#d97706"
 	}
-	return "lightcyan"
+	return "#0e7490"
 }
 
 func (b Building) GetBuildingsCategory() int {

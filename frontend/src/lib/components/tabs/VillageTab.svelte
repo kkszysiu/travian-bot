@@ -44,13 +44,20 @@
     loadVillageData(id)
   }
 
+  let refreshTimer: ReturnType<typeof setTimeout> | null = null
+  function debouncedLoadVillageData() {
+    if (refreshTimer) clearTimeout(refreshTimer)
+    refreshTimer = setTimeout(() => { if (selectedId) loadVillageData(selectedId) }, 300)
+  }
+
   $effect(() => {
     loadVillages()
     EventsOn('villages:modified', () => loadVillages())
-    EventsOn('buildings:modified', () => { if (selectedId) loadVillageData(selectedId) })
-    EventsOn('jobs:modified', () => { if (selectedId) loadVillageData(selectedId) })
+    EventsOn('buildings:modified', () => debouncedLoadVillageData())
+    EventsOn('jobs:modified', () => debouncedLoadVillageData())
     EventsOn('transfer_rules:modified', () => {})
     return () => {
+      if (refreshTimer) clearTimeout(refreshTimer)
       EventsOff('villages:modified', 'buildings:modified', 'jobs:modified', 'transfer_rules:modified')
     }
   })
