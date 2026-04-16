@@ -77,13 +77,17 @@
   }
 
   async function deleteJob(id: number) {
-    await DeleteJob(id)
-    await refreshJobs()
+    try {
+      await DeleteJob(id)
+      await refreshJobs()
+    } catch (e: any) { jobError = e?.message || String(e) }
   }
 
   async function moveJob(id: number, direction: string) {
-    await MoveJob(id, direction)
-    await refreshJobs()
+    try {
+      await MoveJob(id, direction)
+      await refreshJobs()
+    } catch (e: any) { jobError = e?.message || String(e) }
   }
 
   async function refreshJobs() {
@@ -173,8 +177,8 @@
     try {
       await DeleteAllJobs(villageId)
       await refreshJobs()
-    } catch (e) {
-      console.error('Delete all jobs failed:', e)
+    } catch (e: any) {
+      jobError = e?.message || String(e)
     }
   }
 </script>
@@ -218,7 +222,7 @@
         {#each buildingList as b}
           <div class="px-2 py-1 text-xs border-b border-gray-50 flex items-center justify-between group"
             style="background-color: {b.color}20">
-            <span style="color: {b.color === 'white' ? 'gray' : b.color}">
+            <span class="text-gray-700">
               [{b.location}] {b.typeName}
             </span>
             <span class="flex items-center gap-1">
