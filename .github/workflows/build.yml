@@ -21,6 +21,7 @@ jobs:
           - os: ubuntu-latest
             platform: linux/amd64
             artifact: travian-bot-linux-amd64
+            build-tags: webkit2_41
           - os: windows-latest
             platform: windows/amd64
             artifact: travian-bot-windows-amd64
@@ -58,7 +59,7 @@ jobs:
         run: npm install
 
       - name: Build
-        run: wails build -platform ${{ matrix.platform }}
+        run: wails build -platform ${{ matrix.platform }} ${{ matrix.build-tags && format('-tags {0}', matrix.build-tags) || '' }}
 
       - name: Upload artifact (macOS)
         if: runner.os == 'macOS'
